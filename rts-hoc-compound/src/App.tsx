@@ -3,6 +3,9 @@ import './App.css'
 import ContentComponent from './components/ContentComponent'
 import ModalComponent from './components/ModalComponent'
 import CounterComponent from './components/CounterComponent'
+import AntUseModal from './components/AntUseModal'
+import CloneModalComponent from './components/CloneModalComponent'
+import ButtonComponent from './components/ButtonComponent'
 
 function App() {
   return (
@@ -17,6 +20,12 @@ function App() {
         </Col>
         <Col span={24}>
           <ModalComponent />
+        </Col>
+        <Col span={24}>
+          <AntUseModal />
+        </Col>
+        <Col span={24}>
+          <ButtonComponent />
         </Col>
       </Row>
     </>

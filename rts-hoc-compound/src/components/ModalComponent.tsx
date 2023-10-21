@@ -6,9 +6,10 @@ const ModalComponent = () => {
 
   return (
     <Card>
+      <h3>Modal with Compound Component</h3>
       <Modal>
         <Modal.Content onOk={onOk}>
-          <h1>My modal</h1>
+          <h2>My modal</h2>
           <p>using compound component</p>
         </Modal.Content>
         <Modal.Button>Open</Modal.Button>

@@ -1,4 +1,4 @@
-import { Card } from 'antd'
+import { Card, Row } from 'antd'
 import { Tabs } from '../compound/Tabs'
 
 const ContentComponent = () => {
@@ -6,9 +6,11 @@ const ContentComponent = () => {
     <Card>
       <Tabs>
         {/* Group of tabs */}
-        <Tabs.Tab label="a">Tab A</Tabs.Tab>
-        <Tabs.Tab label="b">Tab B</Tabs.Tab>
-        <Tabs.Tab label="c">Tab C</Tabs.Tab>
+        <Row justify='center'>
+          <Tabs.Tab label="a">Tab A</Tabs.Tab>
+          <Tabs.Tab label="b">Tab B</Tabs.Tab>
+          <Tabs.Tab label="c">Tab C</Tabs.Tab>
+        </Row>
 
         {/* Tab panels */}
         <Tabs.Panel label="a">
