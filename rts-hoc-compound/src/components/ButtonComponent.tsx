@@ -2,6 +2,7 @@
 import React from 'react';
 import Button from '../compound/Button';
 import { Card } from 'antd';
+import { style } from '../constants/style';
 
 const ButtonComponent: React.FC = () => {
   const buttons = [
@@ -25,7 +26,7 @@ const ButtonComponent: React.FC = () => {
     });
   });
 
-  return <Card>{augmentedButtons}</Card>;
+  return <Card bodyStyle={style}>{augmentedButtons}</Card>;
 };
 
 export default ButtonComponent;

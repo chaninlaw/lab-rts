@@ -1,9 +1,10 @@
 import { Card, Row } from 'antd'
 import { Tabs } from '../compound/Tabs'
+import { style } from '../constants/style'
 
 const ContentComponent = () => {
   return (
-    <Card>
+    <Card bodyStyle={style}>
       <Tabs>
         {/* Group of tabs */}
         <Row justify='center'>

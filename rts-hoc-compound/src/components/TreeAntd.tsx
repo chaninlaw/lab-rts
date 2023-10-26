@@ -1,6 +1,7 @@
 import React, { useDeferredValue, useEffect, useState } from 'react'
-import { Tree } from 'antd'
+import { Card, Tree } from 'antd'
 import type { DataNode, TreeProps } from 'antd/es/tree'
+import { style } from '../constants/style'
 
 interface Request {
   id: number
@@ -168,11 +169,11 @@ const TreeAntd: React.FC = () => {
     keys.forEach((key) => {
       const [_, responseId, fileIndexStr] = key.split('-')
       // console.log('responseId', responseId)
-      console.log('fileIndexStr', fileIndexStr)
+      // console.log('fileIndexStr', fileIndexStr)
       const responseIndex = Number(responseId) - 1
-      console.log('responseIndex', responseIndex)
+      // console.log('responseIndex', responseIndex)
       const fileIndex = Number(fileIndexStr)
-      console.log('data', data)
+      // console.log('data', data)
       const file = data[responseIndex].files[fileIndex]
 
       if (file.type === 'document') {
@@ -214,9 +215,9 @@ const TreeAntd: React.FC = () => {
 
   useEffect(() => {
     setData(transformData(fakeResponse))
-    console.log(transformData(fakeResponse))
-    console.log(filterSelectableFiles(transformData(fakeResponse)))
-    console.log(filterCoverSheets(transformData(fakeResponse)))
+    // console.log(transformData(fakeResponse))
+    // console.log(filterSelectableFiles(transformData(fakeResponse)))
+    // console.log(filterCoverSheets(transformData(fakeResponse)))
   }, [])
 
   const onCheck: TreeProps['onCheck'] = (checkedKeys) => {
@@ -225,11 +226,11 @@ const TreeAntd: React.FC = () => {
       checkedKeys as string[],
       fakeResponse
     )
-    console.log('toPost', toPost)
+    // console.log('toPost', toPost)
   }
 
   return (
-    <>
+    <Card bodyStyle={style}>
       {data.length !== 0 && (
         <>
           <Tree.DirectoryTree
@@ -238,12 +239,13 @@ const TreeAntd: React.FC = () => {
             defaultCheckedKeys={filterCoverSheets(transformData(fakeResponse))}
             onCheck={onCheck}
             treeData={data}
+            selectable={false}
           />
           <p>Total files: {filterSelectableFiles(data).length}</p>
           <p>Current select files: {defferedSelected.length}</p>
         </>
       )}
-    </>
+    </Card>
   )
 }
 

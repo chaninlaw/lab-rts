@@ -1,11 +1,12 @@
 import { Card } from 'antd'
 import Counter from '../compound/Counter'
+import { style } from '../constants/style'
 
 interface Props {}
 
 const CounterComponent = (props: Props) => {
   return (
-    <Card>
+    <Card bodyStyle={style}>
       <h3>Counter with Compound Component</h3>
       <Counter>
         <Counter.Count />
