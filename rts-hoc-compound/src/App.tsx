@@ -1,14 +1,14 @@
-import { Card, Col, Flex, Row } from 'antd'
+import { Col, Flex, Row } from 'antd'
 // import './App.css'
 import ContentComponent from './components/ContentComponent'
 import ModalComponent from './components/ModalComponent'
 import CounterComponent from './components/CounterComponent'
 import AntUseModal from './components/AntUseModal'
-import CloneModalComponent from './components/CloneModalComponent'
+// import CloneModalComponent from './components/CloneModalComponent'
 import ButtonComponent from './components/ButtonComponent'
 import TreeAntd from './components/TreeAntd'
-import { CSSProperties } from 'react'
 import ProgessComponent from './components/ProgessComponent'
+import ButtonRipple from './components/ButtonRipple'
 
 function App() {
   return (
@@ -35,6 +35,9 @@ function App() {
         </Col>
         <Col span={12}>
           <ProgessComponent />
+        </Col>
+        <Col span={12}>
+          <ButtonRipple />
         </Col>
       </Row>
     </Flex>
