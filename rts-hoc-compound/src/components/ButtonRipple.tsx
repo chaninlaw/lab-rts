@@ -1,6 +1,7 @@
 import React from "react"
 import { Card } from "antd"
 import styled from "styled-components"
+import { style } from "../constants/style"
 
 const StyledButton = styled.button`
   position: relative;
@@ -35,8 +36,6 @@ StyledButton.styledComponentId = "btn"
 const ButtonRipple = () => {
   const ref = React.useRef<HTMLButtonElement>(null)
 
-  console.log(StyledButton)
-
   const handleEffect = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const button = ref.current
     if (!button) return
@@ -59,7 +58,7 @@ const ButtonRipple = () => {
   }
 
   return (
-    <Card>
+    <Card bodyStyle={style}>
       <StyledButton ref={ref} onClick={handleEffect}>
         Button
       </StyledButton>

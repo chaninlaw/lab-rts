@@ -1,14 +1,15 @@
-import { Col, Flex, Row } from 'antd'
+import { Col, Flex, Row } from "antd"
 // import './App.css'
-import ContentComponent from './components/ContentComponent'
-import ModalComponent from './components/ModalComponent'
-import CounterComponent from './components/CounterComponent'
-import AntUseModal from './components/AntUseModal'
+import ContentComponent from "./components/ContentComponent"
+import ModalComponent from "./components/ModalComponent"
+import CounterComponent from "./components/CounterComponent"
+import AntUseModal from "./components/AntUseModal"
 // import CloneModalComponent from './components/CloneModalComponent'
-import ButtonComponent from './components/ButtonComponent'
-import TreeAntd from './components/TreeAntd'
-import ProgessComponent from './components/ProgessComponent'
-import ButtonRipple from './components/ButtonRipple'
+import ButtonComponent from "./components/ButtonComponent"
+import TreeAntd from "./components/TreeAntd"
+import ProgessComponent from "./components/ProgessComponent"
+import ButtonRipple from "./components/ButtonRipple"
+import DropdownContext from "./components/DropdownContext"
 
 function App() {
   return (
@@ -38,6 +39,9 @@ function App() {
         </Col>
         <Col span={12}>
           <ButtonRipple />
+        </Col>
+        <Col span={12}>
+          <DropdownContext />
         </Col>
       </Row>
     </Flex>
