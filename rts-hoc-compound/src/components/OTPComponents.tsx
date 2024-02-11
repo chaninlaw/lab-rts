@@ -130,8 +130,6 @@ const OTPInput = ({ OTPLength = 6, ...props }: OTPInputProps) => {
 	}
 
 	const handleSubmit = () => {
-		console.log(arrayValue.join(''))
-		// TODO: Add your Database logic here
 		props.onSubmit?.(arrayValue.join(''))
 	}
 
