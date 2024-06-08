@@ -11,6 +11,9 @@ export const Route = createRootRoute({
 				<Link to='/dashboard' className='[&.active]:font-bold'>
 					Dashboard
 				</Link>
+				<Link to='/marker' className='[&.active]:font-bold'>
+					Marker
+				</Link>
 			</nav>
 			<hr />
 			<Outlet />

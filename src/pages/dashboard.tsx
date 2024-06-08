@@ -46,10 +46,6 @@ const isBar = (i: ItemID) => getItemDetail(i).type === 'bar'
 // const isNumber = (i: ItemID) => getItemDetail(i).type === 'number'
 
 export function MyDashboard() {
-	return <MemoMyDashboard />
-}
-
-function MemoMyDashboard() {
 	const [layoutState, setLayoutState] = useState<
 		CustomReactGridLayout['Layout'][]
 	>([
