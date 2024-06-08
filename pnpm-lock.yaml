@@ -32,6 +32,9 @@ dependencies:
   react-icons:
     specifier: ^5.2.1
     version: 5.2.1(react@18.3.1)
+  react-image-marker:
+    specifier: ^1.2.0
+    version: 1.2.0(react-dom@18.3.1)(react@18.3.1)
   react-resizable:
     specifier: ^3.0.5
     version: 3.0.5(react-dom@18.3.1)(react@18.3.1)
@@ -3620,6 +3623,16 @@ packages:
       react: '*'
     dependencies:
       react: 18.3.1
+    dev: false
+
+  /react-image-marker@1.2.0(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-HFrzKVnX/hgZqHlxwV7XQNiyMRowD1IAnbsf4dZCEuSzGlGHxAv+sCv/AU1VHHVxFxoHubNL/xYNpGQfgtX67A==}
+    peerDependencies:
+      react: '>= 16.8.0'
+      react-dom: '>= 16.8.0'
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
     dev: false
 
   /react-is@16.13.1:

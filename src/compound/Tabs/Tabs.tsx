@@ -1,15 +1,10 @@
 import * as React from 'react'
-import { Tab, ITabProps } from './Tab'
-import { Panel, IPanelProps } from './Panel'
+import { Tab } from './Tab'
+import { Panel } from './Panel'
 
 interface ITabsContext {
-  activeTab: string
-  setActiveTab: (label: string) => void
-}
-
-interface ITabsComposition {
-  Tab: React.FC<ITabProps>
-  Panel: React.FC<IPanelProps>
+	activeTab: string
+	setActiveTab: (label: string) => void
 }
 
 const TabsContext = React.createContext<ITabsContext | undefined>(undefined)
@@ -21,24 +16,24 @@ const TabsContext = React.createContext<ITabsContext | undefined>(undefined)
  * Note that this component itself does not directly update state.
  */
 const Tabs = (props: React.PropsWithChildren) => {
-  const [activeTab, setActiveTab] = React.useState('a')
+	const [activeTab, setActiveTab] = React.useState('a')
 
-  /**
-   * Memoize the context to prevent unecessary renders.
-   */
-  const memoizedContextValue = React.useMemo(
-    () => ({
-      activeTab,
-      setActiveTab,
-    }),
-    [activeTab, setActiveTab]
-  )
+	/**
+	 * Memoize the context to prevent unecessary renders.
+	 */
+	const memoizedContextValue = React.useMemo(
+		() => ({
+			activeTab,
+			setActiveTab,
+		}),
+		[activeTab, setActiveTab]
+	)
 
-  return (
-    <TabsContext.Provider value={memoizedContextValue}>
-      {props.children}
-    </TabsContext.Provider>
-  )
+	return (
+		<TabsContext.Provider value={memoizedContextValue}>
+			{props.children}
+		</TabsContext.Provider>
+	)
 }
 
 /**
@@ -49,11 +44,11 @@ const Tabs = (props: React.PropsWithChildren) => {
  * Tabs component!
  */
 export const useTabs = (): ITabsContext => {
-  const context = React.useContext(TabsContext)
-  if (!context) {
-    throw new Error('This component must be used within a <Tabs> component.')
-  }
-  return context
+	const context = React.useContext(TabsContext)
+	if (!context) {
+		throw new Error('This component must be used within a <Tabs> component.')
+	}
+	return context
 }
 
 Tabs.Tab = Tab

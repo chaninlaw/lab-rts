@@ -28,10 +28,10 @@ type CustomReactGridLayout = {
 
 type ItemType = 'number' | 'pie' | 'bar' | 'graph'
 type ItemID = `${ItemType}-${number}`
-type ItemDetail<Type = ItemType, ID = number> = {
-	type: Type
-	id: ID
-}
+// type ItemDetail<Type = ItemType, ID = number> = {
+// 	type: Type
+// 	id: ID
+// }
 
 const getItemDetail = (i: ItemID) => ({
 	type: i.split('-')[0] as ItemType,
@@ -42,8 +42,8 @@ const isCurrentChange = (curr: ItemID, incoming: ItemID) =>
 
 const isPie = (i: ItemID) => getItemDetail(i).type === 'pie'
 const isBar = (i: ItemID) => getItemDetail(i).type === 'bar'
-const isGraph = (i: ItemID) => getItemDetail(i).type === 'graph'
-const isNumber = (i: ItemID) => getItemDetail(i).type === 'number'
+// const isGraph = (i: ItemID) => getItemDetail(i).type === 'graph'
+// const isNumber = (i: ItemID) => getItemDetail(i).type === 'number'
 
 export function MyDashboard() {
 	return <MemoMyDashboard />

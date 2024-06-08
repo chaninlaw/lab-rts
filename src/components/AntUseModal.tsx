@@ -1,11 +1,9 @@
 import { Button, Card, Modal } from 'antd'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import ContentComponent from './ContentComponent'
 import { style } from '../constants/style'
 
-interface Props {}
-
-const AntUseModal = (props: Props) => {
+const AntUseModal = () => {
 	const [modal, contextHolder] = Modal.useModal()
 	const [trigger, setTrigger] = useState(false)
 
@@ -15,7 +13,7 @@ const AntUseModal = (props: Props) => {
 			content: <ContentComponent />,
 			icon: <></>,
 		})
-	}, [contextHolder])
+	}, [modal])
 
 	return (
 		<Card bodyStyle={style}>
