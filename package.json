@@ -1,8 +1,9 @@
 {
-	"name": "rts-hoc",
+	"name": "lap-rts",
 	"private": true,
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"type": "module",
+	"homepage": "https://chaninlaw.github.io/lap-rts/",
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
