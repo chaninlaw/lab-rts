@@ -92,35 +92,13 @@ export function ImageMarker({
 		if (!imageRef.current || !onAddMarker) {
 			return
 		}
-		const imageDimentions = imageRef.current.getBoundingClientRect()
+		const rect = imageRef.current.getBoundingClientRect()
+		const x = event.clientX - rect.left // x position within the element.
+		const y = event.clientY - rect.top // y position within the element.
 
-		const calculateMarkerPosition = (
-			mousePosition: MousePosition,
-			imagePosition: ImagePosition,
-			scrollY: number,
-			bufferLeft: number,
-			bufferTop: number
-		) => {
-			const pixelsLeft = mousePosition.clientX - imagePosition.left
-			let pixelsTop
-			if (imagePosition.top < 0) {
-				pixelsTop = mousePosition.pageY - scrollY + imagePosition.top * -1
-			} else {
-				pixelsTop = mousePosition.pageY - scrollY - imagePosition.top
-			}
-			const top = ((pixelsTop - bufferTop) * 100) / imagePosition.height
-			const left = ((pixelsLeft - bufferLeft) * 100) / imagePosition.width
-			return [top, left]
-		}
-
-		const [top, left] = calculateMarkerPosition(
-			event,
-			imageDimentions,
-			window.scrollY,
-			bufferLeft,
-			bufferTop
-		)
-
+		// Adjust marker position based on the current scale and translation
+		const top = ((y - bufferTop) / rect.height) * 100
+		const left = ((x - bufferLeft) / rect.width) * 100
 		onAddMarker({ top, left })
 	}
 
