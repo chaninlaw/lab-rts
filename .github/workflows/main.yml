@@ -9,7 +9,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  
+
 jobs:
   build:
     name: Build
@@ -23,12 +23,12 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Install pnpm
-      - run: |
+        run: |
           npm install -g pnpm
           pnpm install --frozen-lockfile
 
       - name: Install dependencies
-      - run: pnpm install
+        run: pnpm install
 
       - name: Build project
         run: pnpm build
