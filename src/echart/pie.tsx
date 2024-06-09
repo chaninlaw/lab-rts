@@ -44,6 +44,7 @@ export function Pie() {
 	useEffect(() => {
 		console.log('render.pie')
 		return () => clearTimeout(timer)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	const loadingOption: EChartsLoadingOption = {

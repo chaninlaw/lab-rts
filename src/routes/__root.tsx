@@ -7,7 +7,7 @@ export const Route = createRootRoute({
 			<nav className='p-2 flex gap-2 bg-white/50'>
 				<Link to='/' className='[&.active]:font-bold'>
 					Home
-				</Link>{' '}
+				</Link>
 				<Link to='/dashboard' className='[&.active]:font-bold'>
 					Dashboard
 				</Link>
