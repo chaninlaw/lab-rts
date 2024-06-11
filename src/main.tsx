@@ -9,7 +9,7 @@ import { routeTree } from './routeTree.gen'
 // Create a new router instance
 const router = createRouter({
 	routeTree,
-	basepath: process.env.PUBLIC_URL,
+	// basepath: process.env.PUBLIC_URL,
 })
 
 // Register the router instance for type safety

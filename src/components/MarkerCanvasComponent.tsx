@@ -14,8 +14,24 @@ import { useImageProportion } from '../hooks/use-image-proportion'
 import { useRef, useState } from 'react'
 import jsPDF from 'jspdf'
 
+const randomUUID = () => {
+	const s4 = () => {
+		return Math.floor((1 + Math.random()) * 0x10000)
+			.toString(16)
+			.substring(1)
+	}
+	return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`
+}
+
+enum DrawAction {
+	Select = 'select',
+	Mark = 'mark',
+	Rectangle = 'rectangle',
+	Color = 'color',
+}
+
 interface Marker {
-	id: number
+	id: string
 	x: number
 	y: number
 	draggable?: boolean
@@ -29,8 +45,8 @@ const containerHeight = 600
 export function MarkerCanvasComponent() {
 	// TODO: merge useImage and useImageProportion into one hook
 	const { image, aspectRatio, status } = useImage(
-		// '/AutoCAD-House-Plans-With-Dimensions-CAD-Drawing-Mon-Nov-2019-08-50-06.webp'
-		'/floor-plan-3-bedroom-850x1255.jpg'
+		'/AutoCAD-House-Plans-With-Dimensions-CAD-Drawing-Mon-Nov-2019-08-50-06.webp'
+		// '/floor-plan-3-bedroom-850x1255.jpg'
 	)
 	const { imageHeight, imageWidth, offsetX, offsetY } = useImageProportion({
 		containerWidth,
@@ -39,9 +55,17 @@ export function MarkerCanvasComponent() {
 	})
 
 	const stateRef = useRef<Konva.Stage>(null)
-	const [markers, setMarkers] = useState<Marker[]>([])
 	const [markersModal, setMarkersModal] = useState(false)
 	const [exportModal, setExportModal] = useState(false)
+
+	const [color, setColor] = useState('#FF5858')
+	const [drawAction, setDrawAction] = useState(DrawAction.Mark)
+	const isPaintRef = useRef<boolean>(false)
+	const currentShapeRef = useRef<string>()
+	const isDraggable = useRef<boolean>(false)
+
+	const [markers, setMarkers] = useState<Marker[]>([])
+	// const [rectangles, setRectangles] = useState<IRectangle[]>([])
 
 	const calculateCoordination = (event: Konva.KonvaEventObject<MouseEvent>) => {
 		const stage = event.target.getStage()
@@ -71,7 +95,7 @@ export function MarkerCanvasComponent() {
 		setMarkers((prev) => [
 			...prev,
 			{
-				id: prev.length + 1,
+				id: randomUUID(),
 				x,
 				y,
 				draggable: true,
@@ -98,9 +122,7 @@ export function MarkerCanvasComponent() {
 		}
 
 		setMarkers((prev) =>
-			prev.map((marker) =>
-				marker.id === parseInt(id) ? { ...marker, x, y } : marker
-			)
+			prev.map((marker) => (marker.id === id ? { ...marker, x, y } : marker))
 		)
 	}
 
@@ -133,6 +155,70 @@ export function MarkerCanvasComponent() {
 			stage.position(newPos)
 			stage.batchDraw()
 		}
+	}
+
+	const handleMouseMove = (event: Konva.KonvaEventObject<MouseEvent>) => {
+		event.evt.preventDefault()
+		if (drawAction === DrawAction.Select || !isPaintRef.current) return
+
+		// const coordination = calculateCoordination(event)
+		// if (!coordination) return
+		// const { x, y } = coordination
+
+		// const id = currentShapeRef.current
+
+		switch (drawAction) {
+			case DrawAction.Mark:
+				break
+			// case DrawAction.Rectangle:
+			//   setRectangles((prevRectangles) =>
+			//     prevRectangles.map((prevRectangle) => {
+			//       if (prevRectangle.id === id) {
+			//         return {
+			//           ...prevRectangle,
+			//           height: y - prevRectangle.y,
+			//           width: x - prevRectangle.x,
+			//         }
+			//       }
+			//       return prevRectangle
+			//     })
+			//   )
+			//   break
+			default:
+				break
+		}
+	}
+
+	const handleMouseDown = (event: Konva.KonvaEventObject<MouseEvent>) => {
+		event.evt.preventDefault()
+		if (drawAction === DrawAction.Select) return
+
+		isPaintRef.current = true
+
+		const coordination = calculateCoordination(event)
+		if (!coordination) return
+		const { x, y } = coordination
+
+		console.log('handleMouseDown', { x, y })
+
+		const id = randomUUID()
+		currentShapeRef.current = id
+
+		switch (drawAction) {
+			case DrawAction.Mark:
+				setMarkers((prev) => [...prev, { id, x, y, color }])
+				break
+			// case DrawAction.Rectangle:
+			//   setRectangles((prevRectangles) => [...prevRectangles, { id, height: 1, width: 1, x, y, color }])
+			//   break
+			default:
+				break
+		}
+	}
+
+	const handleMouseUp = (event: Konva.KonvaEventObject<MouseEvent>) => {
+		event.evt.preventDefault()
+		isPaintRef.current = false
 	}
 
 	if (status !== 'loaded') return null
