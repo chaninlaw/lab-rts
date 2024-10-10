@@ -25,7 +25,10 @@ if (!rootElement.innerHTML) {
 	const root = ReactDOM.createRoot(rootElement)
 	root.render(
 		<StrictMode>
-			<RouterProvider router={router} />
+			<RouterProvider
+				router={router}
+				basepath={import.meta.env.PROD ? '/lap-rts' : '/'}
+			/>
 		</StrictMode>
 	)
 }
